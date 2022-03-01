@@ -50,10 +50,9 @@ public class ResourceConsumptionScoreTalkConnect implements Score {
 
     @Override
     public Double getScore() {
-        if (this.getCpuContainers()== 0 || this.getMemoryContainers()== 0)
-            return 0.0;
-        Double a1 = this.getCpuContainers();
-        Double a2 = this.getMemoryContainers();
+        //Divide by 100 to normalize between 0 and 1, since those data arrive as %
+        Double a1 = this.getCpuContainers()/100;
+        Double a2 = this.getMemoryContainers()/100;
         Double a3 = this.getNumberContainers();
         Double a4 = 0.65 * a1 + 0.35 * a2;    
         this.score = a4 / a3;
